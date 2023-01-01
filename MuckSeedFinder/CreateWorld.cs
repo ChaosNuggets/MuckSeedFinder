@@ -5,8 +5,9 @@ using UnityEngine;
 namespace MuckSeedFinder
 {
     internal class CreateWorld
-    {
-        public static int seed = -2147483404;
+    { 
+        public static int seed;
+        public static bool isFirstTime = true;
 
         [HarmonyPatch(typeof(MenuUI), "Start")]
         [HarmonyPostfix]
@@ -19,16 +20,30 @@ namespace MuckSeedFinder
         [HarmonyPostfix]
         static void InputSeed(ref TMP_InputField ___seed)
         {
-            ___seed.text = seed.ToString();
+            if (!isFirstTime)
+            {
+                ___seed.text = seed.ToString();
+            }
+        }
+
+        [HarmonyPatch(typeof(SteamLobby), "FindSeed")]
+        [HarmonyPostfix]
+        static void getSeed(int __result)
+        {
+            seed = __result;
         }
 
         [HarmonyPatch(typeof(LobbyVisuals), "SpawnLobbyPlayer")]
         [HarmonyPostfix]
         static void StartGame()
         {
-            /*Thread.Sleep(100);*/ // Without waiting villagers don't spawn in for some reason
-            SteamLobby.Instance.StartGame();
-            Debug.Log($"Testing seed {seed}");
+            if (!isFirstTime)
+            {
+                // Without waiting villagers don't spawn in for some reason
+                SteamLobby.Instance.StartGame();
+                Debug.Log($"Testing seed {seed}");
+            }
+            isFirstTime = false;
         }
     }
 }
