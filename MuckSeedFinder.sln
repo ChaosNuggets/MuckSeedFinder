@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuckSeedFinder", "MuckSeedFinder\MuckSeedFinder.csproj", "{46F1B96D-9D3E-4D48-AC86-28C33E94638E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46F1B96D-9D3E-4D48-AC86-28C33E94638E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F1B96D-9D3E-4D48-AC86-28C33E94638E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F1B96D-9D3E-4D48-AC86-28C33E94638E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F1B96D-9D3E-4D48-AC86-28C33E94638E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D0A2997-E212-4F2D-824E-F7FAB621B908}
+	EndGlobalSection
+EndGlobal
