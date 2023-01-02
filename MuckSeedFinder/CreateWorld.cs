@@ -7,7 +7,7 @@ namespace MuckSeedFinder
     internal class CreateWorld
     { 
         public static int seed;
-        public static bool isFirstTime = true;
+        private static bool isFirstTime = true;
 
         [HarmonyPatch(typeof(MenuUI), "Start")]
         [HarmonyPostfix]
