@@ -1,9 +1,4 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace MuckSeedFinder
@@ -12,33 +7,22 @@ namespace MuckSeedFinder
     {
         [HarmonyPatch(typeof(LoadingScreen), "FinishLoading")]
         [HarmonyPrefix]
-        static void LeaveWorld()
+        static void ResetWorld()
         {
-            if (TestSeed.hasFoundMeleeWeapon)
+            if (FindPositions.chiefsSpears.Count > 0)
             {
-                LogSeed();
+                FileStuff.LogSeed();
             }
             ResetVariables();
             GameManager.instance.LeaveGame();
         }
 
-        private static void LogSeed()
-        {
-            FileLog.Log($"{CreateWorld.seed}:");
-
-            foreach (Item item in TestSeed.foundItems)
-            {
-                FileLog.Log($"{item.name} at {item.position}");
-            }
-
-            Debug.Log($"Logged seed {CreateWorld.seed}");
-        }
-
         private static void ResetVariables()
         {
-            TestSeed.hasFoundMeleeWeapon = false;
+            FindPositions.hasFoundBow = false;
+            FindPositions.chiefsSpears.Clear();
+            FindPositions.guardians.Clear();
             CreateWorld.seed++;
-            TestSeed.foundItems.Clear();
         }
     }
 }
