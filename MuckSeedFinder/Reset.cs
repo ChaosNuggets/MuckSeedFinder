@@ -11,7 +11,14 @@ namespace MuckSeedFinder
         {
             if (FindPositions.chiefsSpears.Count > 0)
             {
-                FileStuff.LogSeed();
+                double distance = CalculateDistance.CalculateShortestDistance(
+                    FindPositions.spawn,
+                    FindPositions.chiefsSpears,
+                    FindPositions.guardians,
+                    FindPositions.boat
+                );
+
+                FileStuff.LogSeed(distance);
             }
             ResetVariables();
             GameManager.instance.LeaveGame();

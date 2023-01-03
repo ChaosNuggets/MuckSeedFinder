@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.IO;
 using UnityEngine;
 
@@ -7,10 +6,10 @@ namespace MuckSeedFinder
 {
     internal class FileStuff
     {
-        public static void LogSeed()
+        public static void LogSeed(double distance)
         {
             string path = Environment.GetFolderPath(
-                Environment.SpecialFolder.DesktopDirectory) + @"muck_seeds.csv"; // Get the path to the desktop
+                Environment.SpecialFolder.DesktopDirectory) + @"\muck_seeds.csv"; // Get the path to the desktop
 
             if (!File.Exists(path))
             {
@@ -18,7 +17,7 @@ namespace MuckSeedFinder
                 WriteHeader(path);
             }
 
-            WriteData(path);
+            WriteData(path, CreateWorld.seed, distance, FindPositions.hasFoundBow);
 
             Debug.Log($"Logged seed {CreateWorld.seed}");
         }
@@ -31,18 +30,11 @@ namespace MuckSeedFinder
             }
         }
 
-        private static void WriteData(string path)
+        private static void WriteData(string path, int seed, double distance, bool ancientBow)
         {
             using (StreamWriter sw = File.AppendText(path))
             {
-                // TODO: add the logging code here
-            }
-
-            FileLog.Log($"{CreateWorld.seed}:");
-
-            foreach (Item item in FindPositions.foundItems)
-            {
-                FileLog.Log($"{item.name} at {item.position}");
+                sw.WriteLine($"{seed},{distance}," + (ancientBow ? "yes" : "no"));
             }
         }
     }
