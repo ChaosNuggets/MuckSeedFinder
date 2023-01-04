@@ -22,7 +22,6 @@ namespace MuckSeedFinder
         {
             if (!isFirstTime)
             {
-                Reset.ResetVariables();
                 ___seed.text = seed.ToString();
             }
         }
