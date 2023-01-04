@@ -16,7 +16,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(Chest), "InitChest")]
         [HarmonyPostfix]
-        private static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
+        static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
         {
             // All Chiefs chests have an id of 0 I think
             if (__instance.id != 0) return;
@@ -45,7 +45,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(Boat), "Start")]
         [HarmonyPrefix]
-        private static void FindBoat(GameObject ___wheel)
+        static void FindBoat(GameObject ___wheel)
         {
             boat = ___wheel.transform.position;
             Debug.Log($"Found boat at {___wheel.transform.position}");
@@ -53,7 +53,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(GuardianSpawner), "Start")]
         [HarmonyPostfix]
-        private static void FindGuardians(List<GameObject> ___structures)
+        static void FindGuardians(List<GameObject> ___structures)
         {
             foreach (GameObject structure in ___structures)
             {
@@ -64,7 +64,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(GameManager), "SendPlayersIntoGame")]
         [HarmonyPrefix]
-        private static void FindSpawn(List<Vector3> spawnPositions)
+        static void FindSpawn(List<Vector3> spawnPositions)
         {
             spawn = spawnPositions[0];
             Debug.Log($"Found spawn at {spawnPositions[0]}");
