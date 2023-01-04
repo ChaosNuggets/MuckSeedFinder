@@ -18,6 +18,9 @@ namespace MuckSeedFinder
         [HarmonyPostfix]
         private static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
         {
+            // All Chiefs chests have an id of 0 I think
+            if (__instance.id != 0) return;
+
             foreach (InventoryItem item in ___cells)
             {
                 if (item == null) continue;
