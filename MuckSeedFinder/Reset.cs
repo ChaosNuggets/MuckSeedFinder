@@ -7,7 +7,7 @@ namespace MuckSeedFinder
     {
         [HarmonyPatch(typeof(LoadingScreen), "FinishLoading")]
         [HarmonyPrefix]
-        static void ResetWorld()
+        private static void ResetWorld()
         {
             if (FindPositions.chiefsSpears.Count > 0)
             {

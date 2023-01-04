@@ -11,14 +11,14 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(MenuUI), "Start")]
         [HarmonyPostfix]
-        static void StartLobby()
+        private static void StartLobby()
         {
             SteamManager.Instance.StartLobby();
         }
 
         [HarmonyPatch(typeof(LobbySettings), "Start")]
         [HarmonyPostfix]
-        static void InputSeed(ref TMP_InputField ___seed)
+        private static void InputSeed(ref TMP_InputField ___seed)
         {
             if (!isFirstTime)
             {

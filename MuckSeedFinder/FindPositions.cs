@@ -16,7 +16,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(Chest), "InitChest")]
         [HarmonyPostfix]
-        static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
+        private static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
         {
             foreach (InventoryItem item in ___cells)
             {
@@ -35,14 +35,14 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(Boat), "Start")]
         [HarmonyPrefix]
-        static void FindBoat(GameObject ___wheel)
+        private static void FindBoat(GameObject ___wheel)
         {
             boat = ___wheel.transform.position;
         }
 
         [HarmonyPatch(typeof(GuardianSpawner), "Start")]
         [HarmonyPostfix]
-        static void FindGuardians(List<GameObject> ___structures)
+        private static void FindGuardians(List<GameObject> ___structures)
         {
             foreach (GameObject structure in ___structures)
             {
@@ -52,7 +52,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(GameManager), "SendPlayersIntoGame")]
         [HarmonyPrefix]
-        static void FindSpawn(List<Vector3> spawnPositions)
+        private static void FindSpawn(List<Vector3> spawnPositions)
         {
             spawn = spawnPositions[0];
         }
