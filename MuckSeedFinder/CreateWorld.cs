@@ -41,9 +41,9 @@ namespace MuckSeedFinder
             {
                 // Without waiting villagers don't spawn in for some reason
                 SteamLobby.Instance.StartGame();
-                Debug.Log($"Testing seed {seed}");
             }
             isFirstTime = false;
+            Debug.Log($"Testing seed {seed}");
         }
     }
 }

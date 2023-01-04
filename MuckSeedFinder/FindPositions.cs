@@ -28,10 +28,12 @@ namespace MuckSeedFinder
                 if (item.name == "Chiefs Spear")
                 {
                     chiefsSpears.Add(__instance.transform.position);
+                    Debug.Log($"Found chiefs spear at {__instance.transform.position}");
                 }
                 else if (item.name == "Ancient Bow")
                 {
                     hasFoundBow = true;
+                    Debug.Log($"Found ancient bow at {__instance.transform.position}");
                 }
             }
         }
@@ -41,6 +43,7 @@ namespace MuckSeedFinder
         private static void FindBoat(GameObject ___wheel)
         {
             boat = ___wheel.transform.position;
+            Debug.Log($"Found boat at {___wheel.transform.position}");
         }
 
         [HarmonyPatch(typeof(GuardianSpawner), "Start")]
@@ -50,6 +53,7 @@ namespace MuckSeedFinder
             foreach (GameObject structure in ___structures)
             {
                 guardians.Add(structure.transform.position);
+                Debug.Log($"Found guardian at {structure.transform.position}");
             }
         }
 
@@ -58,6 +62,7 @@ namespace MuckSeedFinder
         private static void FindSpawn(List<Vector3> spawnPositions)
         {
             spawn = spawnPositions[0];
+            Debug.Log($"Found spawn at {spawnPositions[0]}");
         }
     }
 }
