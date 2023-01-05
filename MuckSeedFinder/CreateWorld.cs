@@ -5,8 +5,13 @@ using UnityEngine;
 namespace MuckSeedFinder
 {
     internal class CreateWorld
-    { 
-        public static int seed;
+    {
+        public static int currentSeed;
+        public static int previousSpearSeed;
+        private static readonly int[] increments = { 19, 38, 205, 224 };
+        private static int incrementIndex = increments.Length; // If this index is outside increments it will just increment by 1
+        private static bool hasResetSeedForIncrementingBy1 = true;
+
         private static bool isFirstTime = true;
 
         [HarmonyPatch(typeof(MenuUI), "Start")]
@@ -22,20 +27,20 @@ namespace MuckSeedFinder
         {
             if (!isFirstTime)
             {
-                ___seed.text = seed.ToString();
+                ___seed.text = currentSeed.ToString();
             }
         }
 
         [HarmonyPatch(typeof(SteamLobby), "FindSeed")]
         [HarmonyPostfix]
-        static void getSeed(int __result)
+        private static void getSeed(int __result)
         {
-            seed = __result;
+            currentSeed = __result;
         }
 
         [HarmonyPatch(typeof(LobbyVisuals), "SpawnLobbyPlayer")]
         [HarmonyPostfix]
-        static void StartGame()
+        private static void StartGame()
         {
             if (!isFirstTime)
             {
@@ -43,7 +48,25 @@ namespace MuckSeedFinder
                 SteamLobby.Instance.StartGame();
             }
             isFirstTime = false;
-            Debug.Log($"Testing seed {seed}");
+            Debug.Log($"Testing seed {currentSeed}");
+        }
+
+        public static void CalculateNextSeed()
+        {
+            if (previousSpearSeed != currentSeed && incrementIndex >= increments.Length)
+            {
+                if (!hasResetSeedForIncrementingBy1)
+                {
+                    currentSeed = previousSpearSeed;
+                    hasResetSeedForIncrementingBy1 = true;
+                }
+                currentSeed++;
+                return;
+            }
+
+            hasResetSeedForIncrementingBy1 = false;
+            incrementIndex = previousSpearSeed == currentSeed ? 0 : incrementIndex + 1;
+            currentSeed = previousSpearSeed + increments[incrementIndex];
         }
     }
 }

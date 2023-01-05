@@ -17,9 +17,9 @@ namespace MuckSeedFinder
                 WriteHeader(path);
             }
 
-            WriteData(path, CreateWorld.seed, distance, FindPositions.hasFoundBow);
+            WriteData(path, CreateWorld.currentSeed, distance, FindPositions.hasFoundBow);
 
-            Debug.Log($"Logged seed {CreateWorld.seed}");
+            Debug.Log($"Logged seed {CreateWorld.currentSeed}");
         }
 
         private static void WriteHeader(string path)

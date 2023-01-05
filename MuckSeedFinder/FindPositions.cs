@@ -28,6 +28,7 @@ namespace MuckSeedFinder
                 if (item.name == "Chiefs Spear")
                 {
                     chiefsSpears.Add(__instance.transform.position);
+                    CreateWorld.previousSpearSeed = CreateWorld.currentSeed;
                     Debug.Log($"Found chiefs spear at {__instance.transform.position}");
                 }
                 else if (item.name == "Ancient Bow")
