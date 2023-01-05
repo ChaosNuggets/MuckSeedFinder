@@ -53,7 +53,7 @@ namespace MuckSeedFinder
 
         public static void CalculateNextSeed()
         {
-            if (previousSpearSeed != currentSeed && incrementIndex >= increments.Length)
+            if (previousSpearSeed != currentSeed && incrementIndex >= increments.Length - 1)
             {
                 if (!hasResetSeedForIncrementingBy1)
                 {
