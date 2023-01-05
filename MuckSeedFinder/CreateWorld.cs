@@ -61,12 +61,14 @@ namespace MuckSeedFinder
                     hasResetSeedForIncrementingBy1 = true;
                 }
                 currentSeed++;
+                Debug.Log("Incrementing by 1");
                 return;
             }
 
             hasResetSeedForIncrementingBy1 = false;
             incrementIndex = previousSpearSeed == currentSeed ? 0 : incrementIndex + 1;
             currentSeed = previousSpearSeed + increments[incrementIndex];
+            Debug.Log($"Incrementing by {increments[incrementIndex]}");
         }
     }
 }
