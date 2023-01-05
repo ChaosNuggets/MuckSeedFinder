@@ -8,7 +8,7 @@ namespace MuckSeedFinder
     {
         public static int currentSeed;
         public static int previousSpearSeed;
-        private static readonly int[] increments = { 19, 38, 205, 224 };
+        private static readonly int[] increments = { 19, 38, 205, 224, 243 };
         private static int incrementIndex = increments.Length; // If this index is outside increments it will just increment by 1
         private static bool hasResetSeedForIncrementingBy1 = true;
 
