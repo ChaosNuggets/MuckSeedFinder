@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using UnityEngine;
 
 namespace MuckSeedFinder
@@ -18,7 +19,7 @@ namespace MuckSeedFinder
                     FindPositions.boat
                 );
 
-                FileStuff.LogSeed(distance);
+                FileStuff.LogSeed(Math.Round(distance));
             }
             ResetVariables();
             GameManager.instance.LeaveGame();
