@@ -16,6 +16,7 @@ namespace MuckSeedFinder
                 incrementIndex = previousSeed == currentSeed ? 0 : incrementIndex + 1;
                 currentSeed = previousSeed + increments[incrementIndex];
                 Debug.Log($"Incrementing by {increments[incrementIndex]}");
+                FileStuff.shouldLog = previousSeed == currentSeed;
                 return true;
             }
             
@@ -24,6 +25,7 @@ namespace MuckSeedFinder
                 currentSeed = previousSeed;
                 hasResetSeedToPreviousGood = true;
             }
+            FileStuff.shouldLog = false;
             return false;
         }
 

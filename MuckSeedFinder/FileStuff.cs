@@ -6,6 +6,8 @@ namespace MuckSeedFinder
 {
     internal class FileStuff
     {
+        public static bool shouldLog = false;
+
         public static void LogSeed(double distance)
         {
             string path = Environment.GetFolderPath(

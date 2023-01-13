@@ -10,7 +10,7 @@ namespace MuckSeedFinder
         [HarmonyPrefix]
         private static void ResetWorld()
         {
-            if (FindPositions.chiefsSpears.Count > 0)
+            if (FileStuff.shouldLog)
             {
                 double distance = CalculateDistance.CalculateShortestDistance(
                     FindPositions.spawn,
