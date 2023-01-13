@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ namespace MuckSeedFinder
                 if (item.name == "Chiefs Spear")
                 {
                     chiefsSpears.Add(__instance.transform.position);
-                    CreateWorld.previousSpearSeed = CreateWorld.currentSeed;
+                    CreateWorld.spear.previousSeed = CreateWorld.currentSeed;
                     Debug.Log($"Found chiefs spear at {__instance.transform.position}");
                 }
                 else if (item.name == "Ancient Bow")
@@ -36,6 +35,11 @@ namespace MuckSeedFinder
                     hasFoundBow = true;
                     Debug.Log($"Found ancient bow at {__instance.transform.position}");
                 }
+            }
+
+            if (hasFoundBow && CreateWorld.spear.previousSeed == CreateWorld.currentSeed)
+            {
+                CreateWorld.god.previousSeed = CreateWorld.currentSeed;
             }
         }
 
