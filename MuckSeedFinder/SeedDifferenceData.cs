@@ -4,28 +4,32 @@ namespace MuckSeedFinder
 {
     internal class SeedDifferenceData
     {
+        public bool hasFoundItem = false;
+
         public int previousSeed;
         public readonly int[] increments;
         public int incrementIndex;
-        private bool hasResetSeedToPreviousGood = true;
 
-        public bool IncrementSeed(ref int currentSeed)
+        private bool hasResetSeedToPreviousGood = false;
+
+        public bool IncrementSeed(out int nextSeed)
         {
-            if (previousSeed == currentSeed || incrementIndex < increments.Length - 1)
+            if (hasFoundItem || incrementIndex < increments.Length - 1)
             {
-                incrementIndex = previousSeed == currentSeed ? 0 : incrementIndex + 1;
-                currentSeed = previousSeed + increments[incrementIndex];
+                incrementIndex = hasFoundItem ? 0 : incrementIndex + 1;
+                nextSeed = previousSeed + increments[incrementIndex];
                 Debug.Log($"Incrementing by {increments[incrementIndex]}");
-                FileStuff.shouldLog = previousSeed == currentSeed;
+                FileStuff.shouldLog = hasFoundItem;
                 return true;
             }
             
             if (!hasResetSeedToPreviousGood)
             {
-                currentSeed = previousSeed;
+                nextSeed = previousSeed;
                 hasResetSeedToPreviousGood = true;
             }
             FileStuff.shouldLog = false;
+            nextSeed = 69420; // This is just to make c# happy lmao, it doesn't do anything
             return false;
         }
 

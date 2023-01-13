@@ -38,6 +38,12 @@ namespace MuckSeedFinder
         private static void getSeed(int __result)
         {
             currentSeed = __result;
+
+            if (isFirstTime)
+            {
+                god.previousSeed = currentSeed;
+                spear.previousSeed = currentSeed;
+            }
         }
 
         [HarmonyPatch(typeof(LobbyVisuals), "SpawnLobbyPlayer")]
@@ -53,12 +59,21 @@ namespace MuckSeedFinder
             Debug.Log($"Testing seed {currentSeed}");
         }
 
-        public static void CalculateNextSeed()
+        public static int CalculateNextSeed()
         {
-            if (god.IncrementSeed(ref currentSeed)) return;
-            if (spear.IncrementSeed(ref currentSeed)) return;
-            currentSeed++;
+            if (god.IncrementSeed(out int nextSeed))
+            {
+                Debug.Log("Finding god seeds");
+                return nextSeed;
+            }
+            if (spear.IncrementSeed(out nextSeed))
+            {
+                Debug.Log("Finding spear seeds");
+                return nextSeed;
+            }
+            nextSeed = currentSeed + 1;
             Debug.Log("Incrementing by 1");
+            return nextSeed;
         }
     }
 }
