@@ -1,4 +1,6 @@
 ﻿using HarmonyLib;
+using Steamworks;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -21,6 +23,18 @@ namespace MuckSeedFinder
         private static void StartLobby()
         {
             SteamManager.Instance.StartLobby();
+        }
+	
+        [HarmonyPatch(typeof(SteamManager), "OnLobbyCreatedCallback")]
+        [HarmonyPostfix]
+        private static void RetryStart(Result result)
+        {
+            if (result != Result.OK)
+            {
+                Thread.Sleep(5000);
+                StatusMessage.Instance.OkayDokay(); // Press the okay dokay button
+                StartLobby();
+            }
         }
 
         [HarmonyPatch(typeof(LobbySettings), "Start")]
