@@ -38,7 +38,7 @@ namespace MuckSeedFinder
                 }
             }
 
-            if (hasFoundBow && CreateWorld.spear.previousSeed == CreateWorld.currentSeed)
+            if (hasFoundBow && chiefsSpears.Count > 0)
             {
                 CreateWorld.god.previousSeed = CreateWorld.currentSeed;
                 CreateWorld.god.hasFoundItem = true;
