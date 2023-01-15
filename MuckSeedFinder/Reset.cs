@@ -6,10 +6,15 @@ namespace MuckSeedFinder
 {
     internal class Reset
     {
+        public static bool isResetting = false;
+
         [HarmonyPatch(typeof(LoadingScreen), "FinishLoading")]
         [HarmonyPrefix]
-        private static void ResetWorld()
+        public static void ResetWorld()
         {
+            if (isResetting) return;
+
+            isResetting = true;
             int nextSeed = CreateWorld.CalculateNextSeed();
 
             if (FileStuff.shouldLog)

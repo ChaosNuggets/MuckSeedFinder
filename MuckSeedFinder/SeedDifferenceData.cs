@@ -10,6 +10,20 @@ namespace MuckSeedFinder
         public readonly int[] increments;
         public int incrementIndex;
 
+        // Returns whether or not it is sure
+        public bool ShouldResetEarly(out bool shouldResetEarly)
+        {
+            if (hasFoundItem || incrementIndex < increments.Length - 1)
+            {
+                shouldResetEarly = !hasFoundItem;
+                return true;
+            }
+
+            shouldResetEarly = true;
+            return false;
+        }
+
+        // Returns whether or not it is sure
         public bool IncrementSeed(out int nextSeed)
         {
             nextSeed = 69420; // This is just to make c# happy lmao, it doesn't do anything

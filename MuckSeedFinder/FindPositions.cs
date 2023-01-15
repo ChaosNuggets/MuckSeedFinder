@@ -38,11 +38,36 @@ namespace MuckSeedFinder
                 }
             }
 
-            if (hasFoundBow && CreateWorld.spear.previousSeed == CreateWorld.currentSeed)
+            if (hasFoundBow && chiefsSpears.Count > 0)
             {
                 CreateWorld.god.previousSeed = CreateWorld.currentSeed;
                 CreateWorld.god.hasFoundItem = true;
+                return;
             }
+
+            ResetEarlyIfShould();
+        }
+
+        // This code is so bad lmaoooooooo
+        private static void ResetEarlyIfShould()
+        {
+            if (CreateWorld.god.ShouldResetEarly(out bool shouldResetEarly))
+            {
+                if (shouldResetEarly)
+                {
+                    Reset.ResetWorld();
+                }
+                return;
+            }
+            if (CreateWorld.spear.ShouldResetEarly(out shouldResetEarly))
+            {
+                if (shouldResetEarly)
+                {
+                    Reset.ResetWorld();
+                }
+                return;
+            }
+            Reset.ResetWorld();
         }
 
         [HarmonyPatch(typeof(Boat), "Start")]

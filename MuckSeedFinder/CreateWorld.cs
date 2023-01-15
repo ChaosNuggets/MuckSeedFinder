@@ -74,6 +74,7 @@ namespace MuckSeedFinder
             }
             isFirstTime = false;
             Debug.Log($"Testing seed {currentSeed}");
+            Reset.isResetting = false;
         }
 
         public static int CalculateNextSeed()
