@@ -10,10 +10,10 @@ namespace MuckSeedFinder
         public readonly int[] increments;
         public int incrementIndex;
 
-        private bool hasResetSeedToPreviousGood = false;
-
         public bool IncrementSeed(out int nextSeed)
         {
+            nextSeed = 69420; // This is just to make c# happy lmao, it doesn't do anything
+
             if (hasFoundItem || incrementIndex < increments.Length - 1)
             {
                 incrementIndex = hasFoundItem ? 0 : incrementIndex + 1;
@@ -23,13 +23,13 @@ namespace MuckSeedFinder
                 return true;
             }
             
-            if (!hasResetSeedToPreviousGood)
+            if (!CreateWorld.hasResetSeedToPreviousGood)
             {
                 nextSeed = previousSeed;
-                hasResetSeedToPreviousGood = true;
+                CreateWorld.hasResetSeedToPreviousGood = true;
             }
+
             FileStuff.shouldLog = false;
-            nextSeed = 69420; // This is just to make c# happy lmao, it doesn't do anything
             return false;
         }
 
