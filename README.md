@@ -4,8 +4,6 @@
 
 ### First Step: Downloading BepInEx
 
-Video tutorial: https://youtu.be/OQ1Bi0KQR6c
-
 Written instructions: https://docs.bepinex.dev/articles/user_guide/installation/index.html
 
 ### Second Step: Downloading the Seed Finder
