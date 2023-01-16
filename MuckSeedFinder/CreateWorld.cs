@@ -61,7 +61,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(SteamLobby), "FindSeed")]
         [HarmonyPostfix]
-        private static void getSeed(int __result)
+        private static void GetSeed(int __result)
         {
             currentSeed = __result;
 

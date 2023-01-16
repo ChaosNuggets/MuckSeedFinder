@@ -18,10 +18,12 @@ namespace MuckSeedFinder
         private static void FindWeapons(InventoryItem[] ___cells, Chest __instance)
         {
             // All Chiefs chests have an id of 0 I think
-            if (__instance.id != 0) return;
+            if (__instance.id != 0 || Reset.isResetting) return;
 
             foreach (InventoryItem item in ___cells)
             {
+                if (Reset.isResetting) return;
+
                 if (item == null) continue;
 
                 if (item.name == "Chiefs Spear")
@@ -38,7 +40,7 @@ namespace MuckSeedFinder
                 }
             }
 
-            if (hasFoundBow && chiefsSpears.Count > 0)
+            if (hasFoundBow && CreateWorld.spear.hasFoundItem)
             {
                 CreateWorld.god.previousSeed = CreateWorld.currentSeed;
                 CreateWorld.god.hasFoundItem = true;
