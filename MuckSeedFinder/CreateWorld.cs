@@ -21,9 +21,9 @@ namespace MuckSeedFinder
                 1204, 1223, 1242, 1261, 1280, 1299,
                 7745, 7764,
                 9025, 9044, 9063,
-                10419, 10438, 10457, 10476, 10495, // I've never actually seen 10457 but I have a suspicion that it exists
-                11699,
-                16903, 16922
+                //10419, 10438, 10457, 10476, 10495, // I've never actually seen 10457 but I have a suspicion that it exists
+                //11699,
+                //16903, 16922
         }); // This is the seed data for the seeds with spear + ancient bow
 
         public static bool hasResetSeedToPreviousGood = false;
