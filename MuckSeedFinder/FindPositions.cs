@@ -57,6 +57,8 @@ namespace MuckSeedFinder
 
         private static void ResetEarlyIfShould()
         {
+            if (!CreateWorld.ShouldFastReset) return;
+
             if (CreateWorld.currentMode == CreateWorld.Mode.God)
             {
                 if (!CreateWorld.god.hasFoundItem)

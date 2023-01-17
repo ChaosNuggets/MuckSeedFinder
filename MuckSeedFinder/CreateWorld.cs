@@ -10,6 +10,8 @@ namespace MuckSeedFinder
     {
         public static int currentSeed;
 
+        public static readonly bool ShouldFastReset = true;
+
         public enum Mode
         {
             One,
