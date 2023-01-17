@@ -101,7 +101,7 @@ namespace MuckSeedFinder
                 {
                     currentSeed = god.previousSeed;   
                     spear.previousSeed = currentSeed;
-                    spear.incrementIndex = 0;
+                    spear.incrementIndex = -1;
                     currentMode--;
                     Debug.Log("Demoting mode");
                 }
