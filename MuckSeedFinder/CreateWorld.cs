@@ -10,23 +10,30 @@ namespace MuckSeedFinder
     {
         public static int currentSeed;
 
-        public static SeedDifferenceData spear = new SeedDifferenceData(
-            new int[] {
-                19, 38,
-                205, 224, 243
-        });
-        public static SeedDifferenceData god = new SeedDifferenceData(
-            new int[] {
-                19, 38,
-                1204, 1223, 1242, 1261, 1280, 1299,
-                7745, 7764,
-                9025, 9044, 9063,
-                //10419, 10438, 10457, 10476, 10495, // I've never actually seen 10457 but I have a suspicion that it exists
-                //11699,
-                //16903, 16922
-        }); // This is the seed data for the seeds with spear + ancient bow
+        public static readonly bool ShouldFastReset = true;
 
-        public static bool hasResetSeedToPreviousGood = false;
+        public enum Mode
+        {
+            One,
+            Spear,
+            God
+        }
+        public static Mode currentMode = Mode.One;
+        public static SeedDifferenceData spear = new SeedDifferenceData(new int[]
+        {
+            19, 38,
+            205, 224, 243
+        });
+        public static SeedDifferenceData god = new SeedDifferenceData(new int[]
+        {
+            19, 38, 57,
+            //1204, 1223, 1242, 1261, 1280, 1299,
+            //7745, 7764,
+            //9025, 9044, 9063,
+            //10419, 10438, 10457, 10476, 10495, // I've never actually seen 10457 but I have a suspicion that it exists
+            //11699,
+            //16903, 16922
+        }); // This is the seed data for the seeds with spear + ancient bow
 
         private static bool isFirstTime = true;
 
@@ -36,7 +43,7 @@ namespace MuckSeedFinder
         {
             SteamManager.Instance.StartLobby();
         }
-	
+
         [HarmonyPatch(typeof(SteamManager), "OnLobbyCreatedCallback")]
         [HarmonyPostfix]
         private static void RetryStart(Result result)
@@ -61,7 +68,7 @@ namespace MuckSeedFinder
 
         [HarmonyPatch(typeof(SteamLobby), "FindSeed")]
         [HarmonyPostfix]
-        private static void getSeed(int __result)
+        private static void GetSeed(int __result)
         {
             currentSeed = __result;
 
@@ -83,23 +90,46 @@ namespace MuckSeedFinder
             }
             isFirstTime = false;
             Debug.Log($"Testing seed {currentSeed}");
+            Reset.isResetting = false;
         }
 
-        public static int CalculateNextSeed()
+        public static void GoToNextSeed()
         {
-            if (god.IncrementSeed(out int nextSeed))
+            if (currentMode == Mode.God)
             {
-                Debug.Log("Finding god seeds");
-                return nextSeed;
+                if (god.ShouldDemoteMode())
+                {
+                    currentSeed = god.previousSeed;   
+                    spear.previousSeed = currentSeed;
+                    spear.incrementIndex = 0;
+                    currentMode--;
+                    Debug.Log("Demoting mode");
+                }
+                else
+                {
+                    god.GoToNextSeed();
+                    Debug.Log("Finding god seeds");
+                }
             }
-            if (spear.IncrementSeed(out nextSeed))
+            if (currentMode == Mode.Spear)
             {
-                Debug.Log("Finding spear seeds");
-                return nextSeed;
+                if (spear.ShouldDemoteMode())
+                {
+                    currentSeed = spear.previousSeed;
+                    currentMode--;
+                    Debug.Log("Demoting mode");
+                }
+                else
+                {
+                    spear.GoToNextSeed();
+                    Debug.Log("Finding spear seeds");
+                }
             }
-            nextSeed = currentSeed + 1;
-            Debug.Log("Incrementing by 1");
-            return nextSeed;
+            if (currentMode == Mode.One)
+            {
+                currentSeed++;
+                Debug.Log("Incrementing by 1");
+            }
         }
     }
 }

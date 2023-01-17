@@ -6,13 +6,17 @@ namespace MuckSeedFinder
 {
     internal class Reset
     {
+        public static bool isResetting = false;
+
         [HarmonyPatch(typeof(LoadingScreen), "FinishLoading")]
         [HarmonyPrefix]
-        private static void ResetWorld()
+        public static void ResetWorld()
         {
-            int nextSeed = CreateWorld.CalculateNextSeed();
+            if (isResetting) return;
 
-            if (FileStuff.shouldLog)
+            isResetting = true;
+
+            if (FileStuff.ShouldLog())
             {
                 double distance = CalculateDistance.CalculateShortestDistance(
                     FindPositions.spawn,
@@ -23,19 +27,19 @@ namespace MuckSeedFinder
 
                 FileStuff.LogSeed(Math.Round(distance));
             }
-            ResetVariables(nextSeed);
+            CreateWorld.GoToNextSeed();
+            ResetVariables();
             GameManager.instance.LeaveGame();
             Debug.Log("Reset world");
         }
 
-        private static void ResetVariables(int nextSeed)
+        private static void ResetVariables()
         {
             FindPositions.hasFoundBow = false;
             FindPositions.chiefsSpears.Clear();
             FindPositions.guardians.Clear();
             CreateWorld.god.hasFoundItem = false;
             CreateWorld.spear.hasFoundItem = false;
-            CreateWorld.currentSeed = nextSeed;
             Debug.Log("Reset variables");
         }
     }

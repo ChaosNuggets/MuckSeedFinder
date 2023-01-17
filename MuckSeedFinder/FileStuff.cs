@@ -6,7 +6,18 @@ namespace MuckSeedFinder
 {
     internal class FileStuff
     {
-        public static bool shouldLog = false;
+        public static bool ShouldLog()
+        {
+            if (CreateWorld.currentMode == CreateWorld.Mode.God)
+            {
+                return CreateWorld.god.hasFoundItem;
+            }
+            if (CreateWorld.currentMode == CreateWorld.Mode.Spear)
+            {
+                return CreateWorld.spear.hasFoundItem;
+            }
+            return false;
+        }
 
         public static void LogSeed(double distance)
         {
