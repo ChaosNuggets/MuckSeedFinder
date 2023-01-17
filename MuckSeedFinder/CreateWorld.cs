@@ -24,10 +24,10 @@ namespace MuckSeedFinder
         });
         public static SeedDifferenceData god = new SeedDifferenceData(new int[]
         {
-            19, 38,
-            1204, 1223, 1242, 1261, 1280, 1299,
-            7745, 7764,
-            9025, 9044, 9063,
+            19, 38, 57,
+            //1204, 1223, 1242, 1261, 1280, 1299,
+            //7745, 7764,
+            //9025, 9044, 9063,
             //10419, 10438, 10457, 10476, 10495, // I've never actually seen 10457 but I have a suspicion that it exists
             //11699,
             //16903, 16922
