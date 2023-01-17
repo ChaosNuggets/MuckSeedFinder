@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MuckSeedFinder</RootNamespace>
-    <AssemblyName>MuckSeedFinder %28fast reset%29</AssemblyName>
+    <AssemblyName>MuckSeedFinder</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
