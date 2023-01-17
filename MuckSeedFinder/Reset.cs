@@ -15,9 +15,8 @@ namespace MuckSeedFinder
             if (isResetting) return;
 
             isResetting = true;
-            int nextSeed = CreateWorld.CalculateNextSeed();
 
-            if (FileStuff.shouldLog)
+            if (FileStuff.ShouldLog())
             {
                 double distance = CalculateDistance.CalculateShortestDistance(
                     FindPositions.spawn,
@@ -28,19 +27,19 @@ namespace MuckSeedFinder
 
                 FileStuff.LogSeed(Math.Round(distance));
             }
-            ResetVariables(nextSeed);
+            CreateWorld.GoToNextSeed();
+            ResetVariables();
             GameManager.instance.LeaveGame();
             Debug.Log("Reset world");
         }
 
-        private static void ResetVariables(int nextSeed)
+        private static void ResetVariables()
         {
             FindPositions.hasFoundBow = false;
             FindPositions.chiefsSpears.Clear();
             FindPositions.guardians.Clear();
             CreateWorld.god.hasFoundItem = false;
             CreateWorld.spear.hasFoundItem = false;
-            CreateWorld.currentSeed = nextSeed;
             Debug.Log("Reset variables");
         }
     }

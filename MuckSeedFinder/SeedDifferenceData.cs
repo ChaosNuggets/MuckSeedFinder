@@ -10,41 +10,17 @@ namespace MuckSeedFinder
         public readonly int[] increments;
         public int incrementIndex;
 
-        // Returns whether or not it is sure
-        public bool ShouldResetEarly(out bool shouldResetEarly)
+        public bool ShouldDemoteMode()
         {
-            if (hasFoundItem || incrementIndex < increments.Length - 1)
-            {
-                shouldResetEarly = !hasFoundItem;
-                return true;
-            }
-
-            shouldResetEarly = true;
-            return false;
+            return !hasFoundItem && incrementIndex >= increments.Length - 1;
         }
 
         // Returns whether or not it is sure
-        public bool IncrementSeed(out int nextSeed)
-        {
-            nextSeed = 69420; // This is just to make c# happy lmao, it doesn't do anything
-
-            if (hasFoundItem || incrementIndex < increments.Length - 1)
-            {
-                incrementIndex = hasFoundItem ? 0 : incrementIndex + 1;
-                nextSeed = previousSeed + increments[incrementIndex];
-                Debug.Log($"Incrementing by {increments[incrementIndex]}");
-                FileStuff.shouldLog = hasFoundItem;
-                return true;
-            }
-            
-            if (!CreateWorld.hasResetSeedToPreviousGood)
-            {
-                nextSeed = previousSeed;
-                CreateWorld.hasResetSeedToPreviousGood = true;
-            }
-
-            FileStuff.shouldLog = false;
-            return false;
+        public void GoToNextSeed()
+        { 
+            incrementIndex = hasFoundItem ? 0 : incrementIndex + 1;
+            CreateWorld.currentSeed = previousSeed + increments[incrementIndex];
+            Debug.Log($"Incrementing by {increments[incrementIndex]}");
         }
 
         public SeedDifferenceData(int[] increments)

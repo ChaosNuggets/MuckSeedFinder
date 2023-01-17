@@ -31,6 +31,10 @@ namespace MuckSeedFinder
                     chiefsSpears.Add(__instance.transform.position);
                     CreateWorld.spear.previousSeed = CreateWorld.currentSeed;
                     CreateWorld.spear.hasFoundItem = true;
+                    if (CreateWorld.currentMode < CreateWorld.Mode.Spear)
+                    {
+                        CreateWorld.currentMode = CreateWorld.Mode.Spear;
+                    }
                     Debug.Log($"Found chiefs spear at {__instance.transform.position}");
                 }
                 else if (item.name == "Ancient Bow")
@@ -44,32 +48,33 @@ namespace MuckSeedFinder
             {
                 CreateWorld.god.previousSeed = CreateWorld.currentSeed;
                 CreateWorld.god.hasFoundItem = true;
+                CreateWorld.currentMode = CreateWorld.Mode.God;
                 return;
             }
 
             ResetEarlyIfShould();
         }
 
-        // This code is so bad lmaoooooooo
         private static void ResetEarlyIfShould()
         {
-            if (CreateWorld.god.ShouldResetEarly(out bool shouldResetEarly))
+            if (CreateWorld.currentMode == CreateWorld.Mode.God)
             {
-                if (shouldResetEarly)
+                if (!CreateWorld.god.hasFoundItem)
                 {
                     Reset.ResetWorld();
                 }
-                return;
             }
-            if (CreateWorld.spear.ShouldResetEarly(out shouldResetEarly))
+            else if (CreateWorld.currentMode == CreateWorld.Mode.Spear)
             {
-                if (shouldResetEarly)
+                if (!CreateWorld.spear.hasFoundItem)
                 {
                     Reset.ResetWorld();
                 }
-                return;
             }
-            Reset.ResetWorld();
+            else
+            {
+                Reset.ResetWorld();
+            }
         }
 
         [HarmonyPatch(typeof(Boat), "Start")]
