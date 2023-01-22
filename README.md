@@ -25,7 +25,7 @@ On this screen, you can enter a starting seed in the seed text box. (this seed f
 
 Press start and it should automatically enter and reset worlds.
 
-It might take a little bit to appear, but eventually, there will be a file called muck_seeds.csv that appears on your desktop. It's probably safer to refrain from opening/making changes to the file while the program is running, but I have no idea if it's bad to do so or not. This file is where all the good seeds are stored.
+After a few seconds, there will be a file called muck_seeds.csv that appears on your desktop. It's probably safer to refrain from opening/making changes to the file while the program is running, but I have no idea if it's bad to do so or not. This file is where all the good seeds are stored.
 
 ## What's inside muck_seeds.csv?
 
