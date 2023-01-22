@@ -6,19 +6,6 @@ namespace MuckSeedFinder
 {
     internal class FileStuff
     {
-        public static bool ShouldLog()
-        {
-            if (CreateWorld.currentMode == CreateWorld.Mode.God)
-            {
-                return CreateWorld.god.hasFoundItem;
-            }
-            if (CreateWorld.currentMode == CreateWorld.Mode.Spear)
-            {
-                return CreateWorld.spear.hasFoundItem;
-            }
-            return false;
-        }
-
         public static void LogSeed(double distance)
         {
             string path = Environment.GetFolderPath(
@@ -30,9 +17,9 @@ namespace MuckSeedFinder
                 WriteHeader(path);
             }
 
-            WriteData(path, CreateWorld.currentSeed, distance, FindPositions.hasFoundBow);
+            WriteData(path, CreateWorld.CurrentSeed, distance, FindPositions.HasFoundBow);
 
-            Debug.Log($"Logged seed {CreateWorld.currentSeed}");
+            Debug.Log($"Logged seed {CreateWorld.CurrentSeed}");
         }
 
         private static void WriteHeader(string path)

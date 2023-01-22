@@ -6,7 +6,7 @@ namespace MuckSeedFinder
 {
     internal class CalculateDistance
     {
-        public static double CalculateShortestDistance(Vector3 spawn, List<Vector3> chiefsSpears, List<Vector3> guardians, Vector3 boat)
+        public static double CalculateShortestDistance(Vector3 spawn, IList<Vector3> chiefsSpears, IList<Vector3> guardians, Vector3 boat)
         {
             double shortestDistance = double.MaxValue;
 
@@ -31,7 +31,7 @@ namespace MuckSeedFinder
         }
 
         // First is the first index of list to permute and last is the last index of list to permute
-        private static double CalculateShortestDistance(List<Vector3> travelPoints, int first, int last)
+        private static double CalculateShortestDistance(IList<Vector3> travelPoints, int first, int last)
         {
             double shortestDistance = double.MaxValue;
             CalculateShortestDistance(travelPoints, first, last, ref shortestDistance);
@@ -39,7 +39,7 @@ namespace MuckSeedFinder
         }
 
         // Calculates the shortest distance by testing all possible permuations
-        private static void CalculateShortestDistance(List<Vector3> travelPoints, int first, int last, ref double shortestDistance)
+        private static void CalculateShortestDistance(IList<Vector3> travelPoints, int first, int last, ref double shortestDistance)
         {
             if (first == last)
             {
@@ -55,7 +55,7 @@ namespace MuckSeedFinder
             }
         }
 
-        private static double CalculateMultipleDistances(List<Vector3> points)
+        private static double CalculateMultipleDistances(IList<Vector3> points)
         {
             double totalDistance = 0;
 
