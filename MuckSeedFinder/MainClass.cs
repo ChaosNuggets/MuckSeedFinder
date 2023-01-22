@@ -4,7 +4,7 @@ using HarmonyLib;
 
 namespace MuckSeedFinder
 {
-    [BepInPlugin("me.chaosnuggets.muckseedfinder", "MuckSeedFinder", "1.4.0.0")]
+    [BepInPlugin("me.chaosnuggets.muckseedfinder", "MuckSeedFinder", "1.4.1.0")]
     public class MainClass : BaseUnityPlugin
     {
         public static MainClass instance;

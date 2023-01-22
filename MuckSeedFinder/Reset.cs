@@ -10,13 +10,16 @@ namespace MuckSeedFinder
         [HarmonyPrefix]
         public static void ResetWorld()
         {
-            double distance = CalculateDistance.CalculateShortestDistance(
-                FindPositions.Spawn,
-                FindPositions.ChiefsSpears,
-                FindPositions.Guardians,
-                FindPositions.Boat
-            );
-            FileStuff.LogSeed(Math.Round(distance));
+            if (FindPositions.ChiefsSpears.Count > 0)
+            {
+                double distance = CalculateDistance.CalculateShortestDistance(
+                    FindPositions.Spawn,
+                    FindPositions.ChiefsSpears,
+                    FindPositions.Guardians,
+                    FindPositions.Boat
+                );
+                FileStuff.LogSeed(Math.Round(distance));
+            }
 
             FindPositions.ResetVariables();
             GameManager.instance.LeaveGame();
