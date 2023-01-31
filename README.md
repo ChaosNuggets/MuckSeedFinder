@@ -33,6 +33,6 @@ After you close the seed finder, you can look at what's inside the file. If you 
 
 Seed is just the seed. Pretty self-explanatory. All the seeds listed have a chiefs spear inside of the chiefs chest.
 
-Distance is the minimum distance required to travel from spawn -> village -> all 5 guardians -> village -> shipwreck. For some reference, the current seed used in the set seed wr has a distance of 2308.
+Distance is the minimum distance required to travel from spawn -> village -> all 5 guardians -> village -> shipwreck. For some reference, the current seed used in the set seed wr has a distance of 1852.
 
 Ancient bow is whether or not the chiefs chest contains an ancient bow. You will probably mostly see this column filled with "yes" since this seed finder is optimized for finding seeds with both chiefs spears and ancient bows.
