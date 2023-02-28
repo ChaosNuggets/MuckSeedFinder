@@ -2,9 +2,11 @@
 
 ## Installation instructions
 
-### Step Zero: Uninstalling incommpatible mods
+### Step Zero: Uninstalling incompatible mods
 
 Make sure you uninstall the muck anticheat before you try to install this mod. If you don't know what the muck anticheat is, don't worry about this step.
+
+To uninstall the muck anticheat, go into steam and verify the integrity of game files.
 
 ### First Step: Downloading BepInEx
 
