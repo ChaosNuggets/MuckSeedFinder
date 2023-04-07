@@ -14,7 +14,7 @@ Written instructions: https://docs.bepinex.dev/articles/user_guide/installation/
 
 ### Second Step: Downloading the Seed Finder
 
-Go to the releases tab on GitHub, click on the latest release, and download one of the dll files. I think the fast reset dll works fine but if you want to be safe there's a no fast reset dll you can download as well. (Fast reset finds seeds faster as the name suggests)
+Go to the releases tab on GitHub, click on the latest release, and download the dll file.
 
 ### Third Step: Putting the dll file inside your plugins folder
 
