@@ -18,7 +18,8 @@ namespace MuckSeedFinder
                     FindPositions.Guardians,
                     FindPositions.Boat
                 );
-                FileStuff.LogSeed(Math.Round(distance));
+                Debug.Log($"distance: {distance}");
+                //FileStuff.LogSeed(Math.Round(distance));
             }
 
             FindPositions.ResetVariables();
